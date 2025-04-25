@@ -111,6 +111,7 @@
       <div><strong>Key:</strong> <span id="scoreKey"></span></div>
       <div><strong>Year:</strong> <span id="scoreYear"></span></div>
       <div><strong>Opus Number:</strong> <span id="scoreOpus"></span></div>
+      <div><strong>Score Price:</strong> <span id="scorePrice"></span></div>
     </div>
 
     <button class="pay-button" onclick="pay()">Pay for Score</button>
@@ -125,7 +126,8 @@
         arranger: params.get('arranger'),
         key: params.get('key'),
         year: params.get('year'),
-        opus: params.get('opus')
+        opus: params.get('opus'),
+        opus: params.get('price')
       };
     }
 
@@ -139,6 +141,7 @@
       document.getElementById('scoreKey').textContent = scoreDetails.key;
       document.getElementById('scoreYear').textContent = scoreDetails.year;
       document.getElementById('scoreOpus').textContent = scoreDetails.opus;
+      document.getElementById('scorePrice').textContent = scoreDetails.opus;
     }
 
     function pay() {
