@@ -217,7 +217,7 @@
         item.className = "score-item";
         
         // Generate the URL for score details
-        const scoreURL = `score.html?title=${encodeURIComponent(score.title)}&composer=${encodeURIComponent(score.composer)}&arranger=${encodeURIComponent(score.arranger)}&key=${encodeURIComponent(score.key)}&year=${encodeURIComponent(score.year)}&opus=${encodeURIComponent(score.opus)}`;
+        const scoreURL = `score.html?title=${encodeURIComponent(score.title)}&composer=${encodeURIComponent(score.composer)}&arranger=${encodeURIComponent(score.arranger)}&key=${encodeURIComponent(score.key)}&year=${encodeURIComponent(score.year)}&opus=${encodeURIComponent(score.opus)}&price=${encodeURIComponent(score.price)}`;
 
         item.innerHTML = `
           <a href="${scoreURL}" target="_blank">
