@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Salpinx Music</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/assets/images/favicon.ico">
+
+  <style>
+    :root {
+      --bg: #fff;
+      --accent: #6a0000;
+      --text: #2d2d2d;
+      --muted: #666;
+      --divider: #e0e0e0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: var(--accent);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 30px;
+    }
+
+    .search-container input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-style: var(--accent);
+      outline: none;
+    }
+
+    .score-list {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .score-item {
+      padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .score-item:last-child {
+      border-bottom: none;
+    }
+
+    .score-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      background-color: #f2f2f2; /* light grey background */
+      padding: 12px 16px;
+    }
+
+    .score-header img {
+      width: 100px;
+      height: auto;
+      padding: 2%;
+      background-color: white;
+      border-radius: 13px;
+    }
+
+    .score-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .score-meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px 20px;
+      margin-top: 10px;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .score-meta div span.label {
+      font-weight: 600;
+      color: var(--text);
+      margin-right: 5px;
+    }
+
+    @media (max-width: 600px) {
+      .score-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .score-meta {
+        grid-template-columns: 1fr;
+      }
+
+      .score-header img {
+        width: 100%;
+        max-width: 300px;
+      }
+      
+
+    }
+
+
+.navbar {
+  display: flex;
+  align-items: center;  /* Vertically center the items in the navbar */
+  justify-content: space-between;
+  background-color: var(--accent);
+  color: white;
+  padding: 12px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.search-container {
+  display: none;  /* Hidden initially */
+  transition: all 0.3s ease-in-out;
+  width: 300px;  /* Set a fixed width */
+  height: 100%;  /* Take full height of the navbar */
+  display: flex;  /* Use flexbox */
+  justify-content: center;  /* Center the input horizontally */
+  align-items: center;  /* Center the input vertically */
+}
+
+.search-container input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 2px solid white; /* White border */
+  border-radius: 6px;
+  font-size: 1rem;
+  background-color: var(--accent); /* Accent color fill */
+  color: white; /* White text */
+  outline: none; /* Remove default focus outline */
+  line-height: 1.5; /* Adjust line height for better vertical centering */
+}
+
+.search-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.search-toggle .material-icons {
+  font-size: 1.6rem;
+  color: white;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="logo"> Salpinx Music</div>
+    <div class="search-container" id="searchContainer">
+      <input type="text" id="searchInput" placeholder="Search scores..." oninput="filterScores()">
+    </div>
+    <button class="search-toggle" onclick="toggleSearch()">
+      <span class="material-icons">search</span>
+    </button>
+  </div>
+  
+
+  <div class="score-list" id="scoreList"></div>
+
+  <script>
+    let scoresData = [];
+
+    function renderScores(data) {
+      const list = document.getElementById("scoreList");
+      list.innerHTML = "";
+
+      data.forEach(score => {
+        const item = document.createElement("div");
+        item.className = "score-item";
+        item.innerHTML = `
+          <div class="score-header">
+            <img src="${score.image}" alt="${score.name}">
+            <div class="score-name">${score.name}</div>
+          </div>
+          <div class="score-meta">
+            <div><span class="label">Composer:</span> ${score.composer}</div>
+            <div><span class="label">Arranger:</span> ${score.arranger}</div>
+            <div><span class="label">Key:</span> ${score.key}</div>
+            <div><span class="label">Year:</span> ${score.year}</div>
+          </div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function filterScores() {
+      const query = document.getElementById("searchInput").value.toLowerCase().trim();
+      const composerRegex = /composer:'([^']+)'/i;  // Regular expression to match composer:'x'
+
+      let filtered = scoresData;
+
+      // Check if the search query includes composer: 'x'
+      if (composerRegex.test(query)) {
+        const composerMatch = query.match(composerRegex);
+        const composerName = composerMatch[1].toLowerCase();  // Extracted composer name
+        filtered = scoresData.filter(score =>
+          score.composer.toLowerCase().includes(composerName)
+        );
+      } else {
+        // Perform a general search across all fields
+        filtered = scoresData.filter(score =>
+          score.name.toLowerCase().includes(query) ||
+          score.composer.toLowerCase().includes(query) ||
+          score.arranger.toLowerCase().includes(query) ||
+          score.key.toLowerCase().includes(query) ||
+          score.year.toString().includes(query)
+        );
+      }
+
+      renderScores(filtered);
+    }
+
+    fetch("scores.json")
+      .then(res => res.json())
+      .then(data => {
+        scoresData = data;
+        renderScores(scoresData);
+      })
+      .catch(err => {
+        console.error("Failed to load scores.json", err);
+      });
+
+
+    function toggleSearch() {
+        const container = document.getElementById("searchContainer");
+        const input = document.getElementById("searchInput");
+
+        // Toggle display between 'none' and 'block'
+        if (container.style.display === "block") {
+          container.style.display = "none";  // Hide search bar
+        } else {
+          container.style.display = "block";  // Show search bar
+          setTimeout(() => input.focus(), 100);  // Focus the input field
+        }
+      }
+  </script>
+
+</body>
+</html>
