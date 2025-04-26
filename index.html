@@ -29,7 +29,6 @@
     .navbar {
       display: flex;
       align-items: center;
-      justify-content: space-between;
       background-color: var(--bg);
       border-bottom: 2px solid var(--divider);
       padding: 12px 24px;
@@ -44,12 +43,15 @@
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      
+      
     }
   
     .search-container {
       display: flex;
       align-items: center;
-      max-width: 400px;
+
+      width: 10%;
       flex: 1;
       margin-left: 20px;
     }
@@ -64,6 +66,7 @@
       transition: border 0.3s ease;
       background-color: #fff;
       color: var(--text);
+      
     }
   
     .search-container input:focus {
@@ -145,6 +148,7 @@
     .score-meta-grid .label {
       font-weight: 600;
       color: var(--text);
+
     }
   
     a {
@@ -185,7 +189,7 @@
 <body>
 
   <div class="navbar">
-    <img src="assets/images/logo-modified.png" class="logo"/><div class="logo"> Salpinx Music</div>
+    <img src="assets/images/logo-modified.png" class="logo"/><div class="logo" style="margin-left: 16px;"> Salpinx Music</div>
     <div class="search-container">
       <input type="text" id="searchInput" placeholder="Search scores..." oninput="filterScores()">
     </div>
