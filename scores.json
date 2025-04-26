@@ -1,26 +1,49 @@
 [
-    {
-      "title": "Les Sauvages",
+  {
+    "title": "Les Sauvages",
+    "composer": "Jean-Phillipe Rameau",
+    "arranger": "Frank Fulton",
+    "key": "G minor",
+    "year": "2025",
+    "image": "assets/images/score_icons/Les_Sauvages_piano_0001.png",
+    "file": "assets/images/Les_Sauvages_piano.pdf",
+    "price": "0"
+  },{
+      "title": "Les Cyclopes",
       "composer": "Jean-Phillipe Rameau",
       "arranger": "Frank Fulton",
-      "key": "G minor",
+      "key": "D minor",
       "year": "2025",
-      "image": "assets/images/score_icons/Les_Sauvages_piano_0001.png",
-      "file": ""
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Fur_Elise_-_sheet_music_excerpt.png/800px-Fur_Elise_-_sheet_music_excerpt.png",
+    "file": "assets/images/Les Cyclopes.pdf",
+    "price": "0"
     },{
-        "title": "Les Cyclopes",
-        "composer": "Jean-Phillipe Rameau",
-        "arranger": "Frank Fulton",
-        "key": "D minor",
-        "year": "2025",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Fur_Elise_-_sheet_music_excerpt.png/800px-Fur_Elise_-_sheet_music_excerpt.png"
-      },{
-        "title": "Sarabande",
-        "composer": "Gerog Frederich Händel",
-        "arranger": "Frank Fulton",
-        "key": "D minor",
-        "year": "2025",
-        "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Fur_Elise_-_sheet_music_excerpt.png/800px-Fur_Elise_-_sheet_music_excerpt.png"
-      }
-  ]
-  
+      "title": "Sarabande",
+      "composer": "Gerog Frederich Händel",
+      "arranger": "Frank Fulton",
+      "key": "D minor",
+      "year": "2025",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Fur_Elise_-_sheet_music_excerpt.png/800px-Fur_Elise_-_sheet_music_excerpt.png",
+    "file": "assets/images/Sarabande.pdf",
+    "price": "0"
+    },{
+      "title": "Amadici",
+      "composer": "Frank Fulton",
+      "arranger": "Frank Fulton",
+      "key": "C Major",
+      "year": "2025",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Fur_Elise_-_sheet_music_excerpt.png/800px-Fur_Elise_-_sheet_music_excerpt.png",
+    "file": "assets/images/Sarabande.pdf",
+    "price": "0.99"
+    },{
+      "title": "Requiem Æternum",
+      "composer": "Wolfgang Amadeus Mozart",
+      "arranger": "Frank Fulton",
+      "key": "D minor",
+      "year": "2025",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Fur_Elise_-_sheet_music_excerpt.png/800px-Fur_Elise_-_sheet_music_excerpt.png",
+    "file": "assets/images/Sarabande.pdf",
+    "price": "0.99"
+    }
+]
+

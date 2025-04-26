@@ -113,6 +113,7 @@
       <div><strong>Key:</strong> <span id="scoreKey"></span></div>
       <div><strong>Year:</strong> <span id="scoreYear"></span></div>
       <div><strong>Opus Number:</strong> <span id="scoreOpus"></span></div>
+      <div><strong>Price:</strong> <span id="scorePrice"></span></div>
     </div>
 
     <button class="pay-button" onclick="pay()">Pay for Score</button>
@@ -127,7 +128,9 @@
         arranger: params.get('arranger'),
         key: params.get('key'),
         year: params.get('year'),
-        opus: params.get('opus')
+        opus: params.get('opus'),
+        file: params.get('file'),
+        price: params.get('price')
       };
     }
 
@@ -141,12 +144,20 @@
       document.getElementById('scoreKey').textContent = scoreDetails.key;
       document.getElementById('scoreYear').textContent = scoreDetails.year;
       document.getElementById('scoreOpus').textContent = scoreDetails.opus;
+      document.getElementById('scorePrice').textContent = scoreDetails.opus;
     }
 
     function pay() {
+    const scoreDetails = getQueryParams();
       // Redirect to a blank page with the same URL query parameters
-      const queryParams = window.location.search;
-      window.location.href = `pay.html${queryParams}`;
+      /* const queryParams = window.location.search;
+
+      if (scoreDetails.pay == "0") {
+        window.location.href = `http://127.0.0.1:3000/${scoreDetails.file}`;
+      } else {
+        window.location.href = `http://127.0.0.1:3000/continue_payment`;
+      }*/
+     window.location.href = `payment.html`
     }
 
     // Render the score details once the page loads

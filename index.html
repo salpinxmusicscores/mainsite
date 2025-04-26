@@ -125,9 +125,13 @@
     }
   
     .score-composer {
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-weight: lighter;
+    }
+    .score-price {
       font-size: 0.95rem;
       color: var(--muted);
-      font-style: italic;
     }
   
     .score-meta-grid {
@@ -201,18 +205,20 @@
         item.className = "score-item";
         
         // Generate the URL for score details
-        const scoreURL = `score.html?title=${encodeURIComponent(score.title)}&composer=${encodeURIComponent(score.composer)}&arranger=${encodeURIComponent(score.arranger)}&key=${encodeURIComponent(score.key)}&year=${encodeURIComponent(score.year)}&opus=${encodeURIComponent(score.opus)}`;
+        const scoreURL = `score.html?title=${encodeURIComponent(score.title)}&composer=${encodeURIComponent(score.composer)}&arranger=${encodeURIComponent(score.arranger)}&key=${encodeURIComponent(score.key)}&year=${encodeURIComponent(score.year)}&opus=${encodeURIComponent(score.opus)}&file=${encodeURIComponent(score.file)}&price=${encodeURIComponent(score.price)}`;
 
         item.innerHTML = `
         <a href="${scoreURL}">
           <div class="score-item-content">
-            <img class="score-thumb" src="${score.image}" alt="${score.title}">
+            <img class="score-thumb" src="${score.image}" alt="${score.title}"> </img>
+            
 
             <div class="score-info">
-              <div class="score-title">${score.title}</div>
-              <div class="score-composer">${score.composer}</div>
-
+              <span class="score-title">${score.title} - <span class="score-composer">${score.composer}</span></span>
+              
+              <span class="score-price"><strong>$</strong>${score.price}</span>
               <div class="score-meta-grid">
+                
                 <div><span class="label">Arranger:</span> ${score.arranger}</div>
                 <div><span class="label">Key:</span> ${score.key}</div>
                 <div><span class="label">Year:</span> ${score.year}</div>
