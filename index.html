@@ -17,190 +17,174 @@
       --muted: #666;
       --divider: #e0e0e0;
     }
-
+  
     body {
       font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
       background-color: var(--bg);
       color: var(--text);
-      margin: 0;
-      padding: 40px 20px;
-      line-height: 1.6;
     }
-
-    h1 {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 30px;
-      color: var(--accent);
-    }
-
-    h2 {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 30px;
-      color: var(--accent);
-      font-style: italic;
-    }
-
-    .search-container {
-      max-width: 600px;
-      margin: 0 auto 30px;
-    }
-
-    .search-container input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-style: var(--accent);
-      outline: none;
-    }
-
-    .score-list {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .score-item {
-      padding: 20px 0;
-      display: flex;
-      flex-direction: column;
-      border-bottom: 1px solid var(--divider);
-    }
-
-    .score-item:last-child {
-      border-bottom: none;
-    }
-
-    .score-header {
+  
+    .navbar {
       display: flex;
       align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      background-color: #f2f2f2; /* light grey background */
-      padding: 12px 16px;
+      justify-content: space-between;
+      background-color: var(--bg);
+      border-bottom: 2px solid var(--divider);
+      padding: 12px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+  
+    .navbar .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  
+    .search-container {
+      display: flex;
+      align-items: center;
+      max-width: 400px;
+      flex: 1;
+      margin-left: 20px;
+    }
+  
+    .search-container input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--divider);
+      border-radius: 20px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border 0.3s ease;
+      background-color: #fff;
+      color: var(--text);
+    }
+  
+    .search-container input:focus {
+      border-color: var(--accent);
+    }
+  
+    .search-toggle {
+      display: none;
+    }
+  
+    .score-list {
+      width: 100%;
+      margin: 0;
+      padding: 0;
     }
 
-    .score-header img {
-      width: 100px;
+  
+    .score-item {
+      padding: 0; /* remove default spacing, handled in content */
+      align-items: center;
+    }
+  
+    .score-item-content {
+      display: flex;
+      width: 100%;
+      gap: 28px;
+      align-items: center; /* center everything vertically */
+      padding: 16px 16px;
+      border-bottom: 1px solid var(--divider);
+      transition: background 0.2s;
+      box-sizing: border-box;
+    }
+  
+    .score-item-content:hover {
+      background-color: #fdf6f6; /* subtle red tint */
+    }
+  
+    .score-thumb {
+      width: 80px;
       height: auto;
-      padding: 2%;
-      background-color: white;
-      border-radius: 13px;
+      border-radius: 6px;
+      object-fit: cover;
+      background-color: rgb(255, 255, 255);
+      padding: 1%;
+      flex-shrink: 0;
     }
-
-    .score-name {
+  
+    .score-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  
+    .score-title {
       font-size: 1.1rem;
       font-weight: 600;
       color: var(--text);
     }
-
-    .score-meta {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px 20px;
-      margin-top: 10px;
+  
+    .score-composer {
       font-size: 0.95rem;
       color: var(--muted);
+      font-style: italic;
     }
-
-    .score-meta div span.label {
+  
+    .score-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 20px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+  
+    .score-meta-grid .label {
       font-weight: 600;
       color: var(--text);
-      margin-right: 5px;
     }
-
+  
+    a {
+      text-decoration: none;
+      color: inherit;
+      width: 100%;
+    }
+  
     @media (max-width: 600px) {
-      .score-header {
+      .navbar {
         flex-direction: column;
         align-items: flex-start;
       }
-
-      .score-meta {
-        grid-template-columns: 1fr;
+  
+      .score-item-content {
+        flex-direction: column;
+        align-items: flex-start;
       }
-
-      .score-header img {
+  
+      .score-thumb {
         width: 100%;
         max-width: 300px;
       }
+  
+      .score-meta-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    .navbar {
-      display: flex;
-      align-items: center;  /* Vertically center the items in the navbar */
-      justify-content: space-between;
-      background-color: var(--accent);
-      color: white;
-      padding: 12px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      flex-wrap: nowrap;
-      gap: 10px;
-    }
-
-    .logo {
-      font-size: 1.4rem;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .search-container {
-      display: none;  /* Hidden initially */
-      transition: all 0.3s ease-in-out;
-      width: 300px;  /* Set a fixed width */
-      height: 100%;  /* Take full height of the navbar */
-      display: flex;  /* Use flexbox */
-      justify-content: center;  /* Center the input horizontally */
-      align-items: center;  /* Center the input vertically */
-    }
-
-    .search-container input {
-      width: 100%;
-      padding: 8px 12px;
-      border: 2px solid white; /* White border */
-      border-radius: 6px;
-      font-size: 1rem;
-      background-color: var(--accent); /* Accent color fill */
-      color: white; /* White text */
-      outline: none; /* Remove default focus outline */
-      line-height: 1.5; /* Adjust line height for better vertical centering */
-    }
-
-    .search-toggle {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.4rem;
-      cursor: pointer;
-      padding: 6px;
-    }
-
-    .search-toggle .material-icons {
-      font-size: 1.6rem;
-      color: white;
-    }
-
-    a {
-      text-decoration: none;
+    img.logo {
+      max-width: 50px;
+      align-items: center; /* center everything vertically */
     }
   </style>
+  
+  
 </head>
 <body>
 
   <div class="navbar">
-    <div class="logo">Salpinx Music</div>
-    <div class="search-container" id="searchContainer">
+    <img src="assets/images/logo-modified.png" class="logo"/><div class="logo"> Salpnix Music</div>
+    <div class="search-container">
       <input type="text" id="searchInput" placeholder="Search scores..." oninput="filterScores()">
     </div>
-    <button class="search-toggle" onclick="toggleSearch()">
-      <span class="material-icons">search</span>
-    </button>
   </div>
 
   <div class="score-list" id="scoreList"></div>
@@ -217,22 +201,29 @@
         item.className = "score-item";
         
         // Generate the URL for score details
-        const scoreURL = `score.html?title=${encodeURIComponent(score.title)}&composer=${encodeURIComponent(score.composer)}&arranger=${encodeURIComponent(score.arranger)}&key=${encodeURIComponent(score.key)}&year=${encodeURIComponent(score.year)}&opus=${encodeURIComponent(score.opus)}&price=${encodeURIComponent(score.price)}`;
+        const scoreURL = `score.html?title=${encodeURIComponent(score.title)}&composer=${encodeURIComponent(score.composer)}&arranger=${encodeURIComponent(score.arranger)}&key=${encodeURIComponent(score.key)}&year=${encodeURIComponent(score.year)}&opus=${encodeURIComponent(score.opus)}`;
 
         item.innerHTML = `
-          <a href="${scoreURL}" target="_blank">
-            <div class="score-header">
-              <img src="${score.image}" alt="${score.title}">
-              <div class="score-name">${score.title}</div>
+        <a href="${scoreURL}">
+          <div class="score-item-content">
+            <img class="score-thumb" src="${score.image}" alt="${score.title}">
+
+            <div class="score-info">
+              <div class="score-title">${score.title}</div>
+              <div class="score-composer">${score.composer}</div>
+
+              <div class="score-meta-grid">
+                <div><span class="label">Arranger:</span> ${score.arranger}</div>
+                <div><span class="label">Key:</span> ${score.key}</div>
+                <div><span class="label">Year:</span> ${score.year}</div>
+                <div><span class="label">Opus:</span> ${score.opus}</div>
+              </div>
             </div>
-            <div class="score-meta">
-              <div><span class="label">Composer:</span> ${score.composer}</div>
-              <div><span class="label">Arranger:</span> ${score.arranger}</div>
-              <div><span class="label">Key:</span> ${score.key}</div>
-              <div><span class="label">Year:</span> ${score.year}</div>
-            </div>
-          </a>
-        `;
+          </div>
+        </a>
+      `;
+
+
         
         list.appendChild(item);
       });
