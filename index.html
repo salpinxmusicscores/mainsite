@@ -13,6 +13,7 @@
     :root {
       --bg: #fff;
       --accent: #6a0000;
+      --accent-muted: #883737;
       --text: #2d2d2d;
       --muted: #666;
       --divider: #e0e0e0;
@@ -182,6 +183,32 @@
       max-width: 50px;
       align-items: center; /* center everything vertically */
     }
+
+    .button {
+      align-items: center;
+      text-align: center;
+      margin-left: 16px;
+      padding: 10px 14px;
+      border: 1px solid #fff;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      outline: none;
+      background-color: var(--accent);
+      color: #fff;
+      font-family: 'Commissioner', sans-serif;
+      transition: border 0.4s ease, background-color 0.4s ease; /* Combined transitions */
+    }
+
+    .button:hover {
+        cursor: pointer;
+        background-color: var(--accent-muted); /* Make sure --accent-muted is defined */
+    }
+
+    .button:active {
+      background-color: #fff;
+      border: 1px solid var(--accent-muted);
+      color: var(--accent-muted);
+    }
   </style>
   
   
@@ -190,6 +217,7 @@
 
   <div class="navbar">
     <img src="assets/images/logo-modified.png" class="logo"/><div class="logo" style="margin-left: 16px;"> Salpinx Music</div>
+    <button class="button" onclick="window.location.href = 'articles.html'">Articles</button>
     <div class="search-container">
       <input type="text" id="searchInput" placeholder="Search scores..." oninput="filterScores()">
     </div>
@@ -214,6 +242,7 @@
         item.innerHTML = `
         <a href="${scoreURL}">
           <div class="score-item-content">
+
             <img class="score-thumb" src="${score.image}" alt="${score.title}"> </img>
             
 

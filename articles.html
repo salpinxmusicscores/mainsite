@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Articles List - Salpinx Music</title>
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+          --bg: #fff;
+          --accent: #6a0000;
+          --accent-muted: #883737;
+          --text: #2d2d2d;
+          --muted: #666;
+          --divider: #e0e0e0;
+        }
+      
+        body {
+          font-family: 'Commissioner', sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: var(--bg);
+          color: var(--text);
+        }
+      
+        .navbar {
+          display: flex;
+          align-items: center;
+          background-color: var(--bg);
+          border-bottom: 2px solid var(--divider);
+          padding: 12px 24px;
+          position: sticky;
+          top: 0;
+          z-index: 100;
+        }
+      
+        .navbar .logo {
+          font-size: 1.4rem;
+          font-weight: 700;
+          color: var(--accent);
+          text-transform: uppercase;
+          letter-spacing: 0.05em;
+          
+          
+        }
+      
+        .search-container {
+          display: flex;
+          align-items: center;
+    
+          width: 10%;
+          flex: 1;
+          margin-left: 20px;
+        }
+      
+        .search-container input {
+          width: 100%;
+          padding: 10px 14px;
+          border: 1px solid var(--divider);
+          border-radius: 20px;
+          font-size: 0.95rem;
+          outline: none;
+          transition: border 0.3s ease;
+          background-color: #fff;
+          color: var(--text);
+          
+        }
+      
+        .search-container input:focus {
+          border-color: var(--accent);
+        }
+      
+        .search-toggle {
+          display: none;
+        }
+      
+        .score-list {
+          width: 100%;
+          margin: 0;
+          padding: 0;
+        }
+    
+      
+        .score-item {
+          padding: 0; /* remove default spacing, handled in content */
+          align-items: center;
+        }
+      
+        .score-item-content {
+          display: flex;
+          width: 100%;
+          gap: 28px;
+          align-items: center; /* center everything vertically */
+          padding: 16px 16px;
+          border-bottom: 1px solid var(--divider);
+          transition: background 0.2s;
+          box-sizing: border-box;
+        }
+      
+        .score-item-content:hover {
+          background-color: #fdf6f6; /* subtle red tint */
+        }
+      
+        .score-thumb {
+          width: 80px;
+          height: auto;
+          border-radius: 6px;
+          object-fit: cover;
+          background-color: rgb(255, 255, 255);
+          padding: 1%;
+          flex-shrink: 0;
+        }
+      
+        .score-info {
+          flex: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+      
+        .score-title {
+          font-size: 1.1rem;
+          font-weight: 600;
+          color: var(--text);
+        }
+      
+        .score-composer {
+          font-size: 1.1rem;
+          color: var(--muted);
+          font-weight: lighter;
+        }
+        .score-price {
+          font-size: 0.95rem;
+          color: var(--muted);
+        }
+      
+        .score-meta-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 6px 20px;
+          font-size: 0.85rem;
+          color: var(--muted);
+        }
+      
+        .score-meta-grid .label {
+          font-weight: 600;
+          color: var(--text);
+    
+        }
+      
+        a {
+          text-decoration: none;
+          color: inherit;
+          width: 100%;
+        }
+      
+        @media (max-width: 600px) {
+          .navbar {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+      
+          .score-item-content {
+            flex-direction: column;
+            align-items: flex-start;
+          }
+      
+          .score-thumb {
+            width: 100%;
+            max-width: 300px;
+          }
+      
+          .score-meta-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+    
+        img.logo {
+          max-width: 50px;
+          align-items: center; /* center everything vertically */
+        }
+
+        divider {
+            border-bottom: 2px solid var(--divider);
+        }
+
+        .article-content {
+            margin-top: 16px;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+        .article-heading {
+            font-family: 'Playfair Display', serif, monospace;
+            font-weight: 660;
+            padding-bottom: 16px;
+            padding-top: 16px;
+            border-top: 2px solid var(--divider);
+            border-bottom: 2px solid var(--divider);
+            color: var(--accent);
+        }
+        .article-muted {
+            padding-bottom: 10px;
+            margin-left: 10px;
+            padding-top: 10px;
+            color: var(--muted);
+            font-style: italic;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif, monospace;
+            font-weight: 60;
+        }
+
+        code {
+            background-color:#f6f6f6;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .button {
+            align-items: center;
+            text-align: center;
+            margin-left: 16px;
+            padding: 10px 14px;
+            border: 1px solid #fff;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            outline: none;
+            background-color: var(--accent);
+            color: #fff;
+            font-family: 'Commissioner', sans-serif;
+            transition: border 0.4s ease, background-color 0.4s ease; /* Combined transitions */
+        }
+
+        .button:hover {
+            cursor: pointer;
+            background-color: var(--accent-muted); /* Make sure --accent-muted is defined */
+        }
+
+        .button:active {
+            background-color: #fff;
+            border: 1px solid var(--accent-muted);
+            color: var(--accent-muted);
+        }
+        .article-list {
+            margin: 20px;
+            padding: 0;
+        }
+
+        .article-item {
+            padding: 10px;
+            border-bottom: 1px solid var(--divider);
+            margin-bottom: 10px;
+        }
+
+        .article-item h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .article-item p {
+            color: var(--muted);
+            margin: 5px 0;
+        }
+
+        .article-item a {
+            text-decoration: none;
+            color: var(--accent);
+            font-weight: bold;
+        }
+      </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <img src="assets/images/logo-modified.png" class="logo"/><div class="logo" style="margin-left: 16px;"> Salpinx Music</div>
+        <button class="button" onclick="window.location.href = 'index.html'">Home</button>
+        <div class="search-container">
+          <input type="text" id="searchInput" placeholder="Search scores..." oninput="filterScores()">
+        </div>
+      </div>
+
+    <div class="article-list" id="articleList">
+        <!-- Articles will be injected here -->
+    </div>
+
+    <script>
+        // Fetch articles from the articles.json file
+        fetch('articles.json')
+            .then(response => response.json())
+            .then(data => {
+                const articleListContainer = document.getElementById('articleList');
+                
+                data.forEach(article => {
+                    const articleItem = document.createElement('div');
+                    articleItem.classList.add('article-item');
+
+                    // Create the title, date, and a link to the article
+                    articleItem.innerHTML = `
+                        <h3>${article.title}</h3>
+                        <p>${article.date}</p>
+                        <a href="article.html?id=${article.id}">Read full article</a>
+                    `;
+
+                    // Append the article item to the article list container
+                    articleListContainer.appendChild(articleItem);
+                });
+            })
+            .catch(error => console.error('Error fetching articles:', error));
+    </script>
+
+</body>
+</html>
