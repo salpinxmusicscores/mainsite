@@ -6,7 +6,7 @@
     "key": "G minor",
     "year": "2025",
     "image": "assets/images/score_icons/Les_Sauvages_piano_0001.png",
-    "file": "assets/images/Les_Sauvages_piano.pdf",
+    "file": "assets/Les_Sauvages_piano.pdf",
     "price": "0"
   },{
       "title": "Les Cyclopes",
@@ -15,7 +15,7 @@
       "key": "D minor",
       "year": "2025",
       "image": "assets/images/score_icons/Les_Cyclopes_0001.png",
-    "file": "assets/images/Les Cyclopes.pdf",
+    "file": "assets/Les Cyclopes.pdf",
     "price": "0"
     },{
       "title": "Sarabande",
@@ -24,7 +24,7 @@
       "key": "D minor",
       "year": "2025",
       "image": "assets/images/score_icons/Sarabande_0001.png",
-    "file": "assets/images/Sarabande.pdf",
+    "file": "assets/Sarabande.pdf",
     "price": "0"
     },{
       "title": "Amadici",
@@ -33,17 +33,8 @@
       "key": "C Major",
       "year": "2025",
       "image": "assets/images/score_icons/Mozhart_0001.png",
-    "file": "assets/images/Sarabande.pdf",
-    "price": "0.99"
-    },{
-      "title": "Requiem Æternum",
-      "composer": "Wolfgang Amadeus Mozart",
-      "arranger": "Frank Fulton",
-      "key": "D minor",
-      "year": "2025",
-      "image": "assets/images/score_icons/Requiem_in_D_Minor_K _626_I _Introitus_Requiem_Aeternam_By_W _A _Mozart_0001.png",
-    "file": "assets/images/Sarabande.pdf",
-    "price": "9.99"
+    "file": "assets/Mozhart - Full Score.pdf",
+    "price": "0"
     }
 ]
 
