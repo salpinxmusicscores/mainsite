@@ -1,120 +1,40 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Score Details</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 
-  <style>
-    :root {
-      --bg: #fff;
-      --accent: #6a0000;
-      --text: #2d2d2d;
-      --muted: #666;
-      --divider: #e0e0e0;
-    }
-
-    body {
-      font-family: 'Commissioner', sans-serif;
-      background-color: var(--bg);
-      color: var(--text);
-      margin: 0;
-      padding: 40px 20px;
-    }
-
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background-color: var(--accent);
-      color: white;
-      padding: 12px 20px;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .logo {
-      font-size: 1.4rem;
-      font-weight: 600;
-    }
-
-    .score-details {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 20px;
-      background-color: #f9f9f9;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .score-title {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-bottom: 20px;
-    }
-
-    .score-meta {
-      font-size: 1.1rem;
-      margin-bottom: 20px;
-    }
-
-    .score-meta div {
-      margin-bottom: 8px;
-    }
-
-    .pay-button {
-      display: block;
-      width: 100%;
-      padding: 12px 20px;
-      background-color: var(--accent);
-      color: white;
-      font-size: 1.2rem;
-      text-align: center;
-      border-radius: 6px;
-      border: none;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    .pay-button:hover {
-      background-color: #c68600;
-    }
-
-    .search-container {
-      max-width: 600px;
-      margin: 0 auto 30px;
-    }
-
-    .search-container input {
-      width: 100%;
-      padding: 12px 16px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-      outline: none;
-    }
-  </style>
 </head>
+
 <body>
 
-  <h1>🎶 Music Score Details</h1>
-
-  <div class="score-details">
+  <div class="navbar">
+    <img src="assets/images/logo-modified.png" class="logo" />
+    <div class="logo" style="margin-left: 16px;"> Salpinx Music</div>
+    <button class="button" onclick="window.location.href = 'index.html'">Home</button>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search scores..." oninput="filterScores()">
+    </div>
+  </div>
+  <div class="article-content">
+    <!-- Placeholder where the title, date, and body will be inserted -->
+    <h1 class="article-heading" id="scoreTitle">Loading content...</h1>
+    <p class="article-muted" id="scoreComposer">Loading content...</p>
+  </div>
+  <div class="article-content">
     <div class="score-title" id="scoreTitle"></div>
     <div class="score-meta">
-      <div><strong>Composer:</strong> <span id="scoreComposer"></span></div>
-      <div><strong>Arranger:</strong> <span id="scoreArranger"></span></div>
-      <div><strong>Key:</strong> <span id="scoreKey"></span></div>
-      <div><strong>Year:</strong> <span id="scoreYear"></span></div>
-      <div><strong>Opus Number:</strong> <span id="scoreOpus"></span></div>
+      <div><strong>Arranger:</strong> <i><span id="scoreArranger"></span></i></div>
+      <div><strong>Key:</strong> <i><span id="scoreKey"></span></i></div>
+      <div><strong>Year:</strong> <i><span id="scoreYear"></span></i></div>
+      <div><strong>Opus Number:</strong> <i><span id="scoreOpus"></span></i></div>
     </div>
-
-    <button class="pay-button" onclick="pay()">Pay for Score</button>
+    <div id="image"></div>
+    <center><button class="button" onclick="pay()">Download Score</button></center>
   </div>
 
   <script>
@@ -128,13 +48,14 @@
         year: params.get('year'),
         opus: params.get('opus'),
         file: params.get('file'),
-        price: params.get('price')
+        price: params.get('price'),
+        image: params.get('image')
       };
     }
 
     function renderScoreDetails() {
       const scoreDetails = getQueryParams();
-      
+
       // Set the score details in the page
       document.getElementById('scoreTitle').textContent = scoreDetails.title;
       document.getElementById('scoreComposer').textContent = scoreDetails.composer;
@@ -142,12 +63,14 @@
       document.getElementById('scoreKey').textContent = scoreDetails.key;
       document.getElementById('scoreYear').textContent = scoreDetails.year;
       document.getElementById('scoreOpus').textContent = scoreDetails.opus;
+      document.getElementById('image').innerHTML = `<img src="${scoreDetails.image}">`;
     }
 
     function pay() {
       // Redirect to a blank page with the same URL query parameters
+      const scoreDetails = getQueryParams();
       const queryParams = window.location.search;
-      window.location.href = `pay.html${queryParams}`;
+      window.location.href = score.file;
     }
 
     // Call the function to render the score details
@@ -155,4 +78,5 @@
   </script>
 
 </body>
+
 </html>

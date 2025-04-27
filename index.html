@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Salpinx Music</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&display=swap" rel="stylesheet">
@@ -18,7 +19,7 @@
       --muted: #666;
       --divider: #e0e0e0;
     }
-  
+
     body {
       font-family: 'Commissioner', sans-serif;
       margin: 0;
@@ -26,7 +27,7 @@
       background-color: var(--bg);
       color: var(--text);
     }
-  
+
     .navbar {
       display: flex;
       align-items: center;
@@ -37,17 +38,17 @@
       top: 0;
       z-index: 100;
     }
-  
+
     .navbar .logo {
       font-size: 1.4rem;
       font-weight: 700;
       color: var(--accent);
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      
-      
+
+
     }
-  
+
     .search-container {
       display: flex;
       align-items: center;
@@ -56,7 +57,7 @@
       flex: 1;
       margin-left: 20px;
     }
-  
+
     .search-container input {
       width: 100%;
       padding: 10px 14px;
@@ -67,44 +68,47 @@
       transition: border 0.3s ease;
       background-color: #fff;
       color: var(--text);
-      
+
     }
-  
+
     .search-container input:focus {
       border-color: var(--accent);
     }
-  
+
     .search-toggle {
       display: none;
     }
-  
+
     .score-list {
       width: 100%;
       margin: 0;
       padding: 0;
     }
 
-  
+
     .score-item {
-      padding: 0; /* remove default spacing, handled in content */
+      padding: 0;
+      /* remove default spacing, handled in content */
       align-items: center;
     }
-  
+
     .score-item-content {
       display: flex;
       width: 100%;
       gap: 28px;
-      align-items: center; /* center everything vertically */
+      align-items: center;
+      /* center everything vertically */
       padding: 16px 16px;
       border-bottom: 1px solid var(--divider);
       transition: background 0.2s;
       box-sizing: border-box;
     }
-  
+
     .score-item-content:hover {
-      background-color: #fdf6f6; /* subtle red tint */
+      background-color: #fdf6f6;
+      /* subtle red tint */
     }
-  
+
     .score-thumb {
       width: 80px;
       height: auto;
@@ -114,30 +118,31 @@
       padding: 1%;
       flex-shrink: 0;
     }
-  
+
     .score-info {
       flex: 1;
       display: flex;
       flex-direction: column;
       gap: 8px;
     }
-  
+
     .score-title {
       font-size: 1.1rem;
       font-weight: 600;
       color: var(--text);
     }
-  
+
     .score-composer {
       font-size: 1.1rem;
       color: var(--muted);
       font-weight: lighter;
     }
+
     .score-price {
       font-size: 0.95rem;
       color: var(--muted);
     }
-  
+
     .score-meta-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -145,35 +150,35 @@
       font-size: 0.85rem;
       color: var(--muted);
     }
-  
+
     .score-meta-grid .label {
       font-weight: 600;
       color: var(--text);
 
     }
-  
+
     a {
       text-decoration: none;
       color: inherit;
       width: 100%;
     }
-  
+
     @media (max-width: 600px) {
       .navbar {
         flex-direction: column;
         align-items: flex-start;
       }
-  
+
       .score-item-content {
         flex-direction: column;
         align-items: flex-start;
       }
-  
+
       .score-thumb {
         width: 100%;
         max-width: 300px;
       }
-  
+
       .score-meta-grid {
         grid-template-columns: 1fr;
       }
@@ -181,7 +186,8 @@
 
     img.logo {
       max-width: 50px;
-      align-items: center; /* center everything vertically */
+      align-items: center;
+      /* center everything vertically */
     }
 
     .button {
@@ -196,12 +202,14 @@
       background-color: var(--accent);
       color: #fff;
       font-family: 'Commissioner', sans-serif;
-      transition: border 0.4s ease, background-color 0.4s ease; /* Combined transitions */
+      transition: border 0.4s ease, background-color 0.4s ease;
+      /* Combined transitions */
     }
 
     .button:hover {
-        cursor: pointer;
-        background-color: var(--accent-muted); /* Make sure --accent-muted is defined */
+      cursor: pointer;
+      background-color: var(--accent-muted);
+      /* Make sure --accent-muted is defined */
     }
 
     .button:active {
@@ -210,13 +218,15 @@
       color: var(--accent-muted);
     }
   </style>
-  
-  
+
+
 </head>
+
 <body>
 
   <div class="navbar">
-    <img src="assets/images/logo-modified.png" class="logo"/><div class="logo" style="margin-left: 16px;"> Salpinx Music</div>
+    <img src="assets/images/logo-modified.png" class="logo" />
+    <div class="logo" style="margin-left: 16px;"> Salpinx Music</div>
     <button class="button" onclick="window.location.href = 'articles.html'">Articles</button>
     <div class="search-container">
       <input type="text" id="searchInput" placeholder="Search scores..." oninput="filterScores()">
@@ -235,9 +245,10 @@
       data.forEach(score => {
         const item = document.createElement("div");
         item.className = "score-item";
-        
+
         // Generate the URL for score details
-        const scoreURL = `score.html?title=${encodeURIComponent(score.title)}&composer=${encodeURIComponent(score.composer)}&arranger=${encodeURIComponent(score.arranger)}&key=${encodeURIComponent(score.key)}&year=${encodeURIComponent(score.year)}&opus=${encodeURIComponent(score.opus)}&file=${encodeURIComponent(score.file)}&price=${encodeURIComponent(score.price)}`;
+        const scoreURL =
+          `score.html?title=${encodeURIComponent(score.title)}&composer=${encodeURIComponent(score.composer)}&arranger=${encodeURIComponent(score.arranger)}&key=${encodeURIComponent(score.key)}&year=${encodeURIComponent(score.year)}&opus=${encodeURIComponent(score.opus)}&file=${encodeURIComponent(score.file)}&price=${encodeURIComponent(score.price)}&icon=${encodeURIComponent(score.image)}`;
 
         item.innerHTML = `
         <a href="${scoreURL}">
@@ -263,7 +274,7 @@
       `;
 
 
-        
+
         list.appendChild(item);
       });
     }
@@ -319,4 +330,5 @@
   </script>
 
 </body>
+
 </html>
