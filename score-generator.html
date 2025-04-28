@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Random Music Generator</title>
+</head>
+<body>
+    <center>
+    <h1>Random Music Generator</h1>
+    <form id="music-form">
+        <label  for="compoundCheckbox">Choose Compound Time Signature</label>
+        <input class="button" type="checkbox" id="compoundCheckbox">
+        <br><br>
+        <button class="button" type="button" onclick="generateRandom()">Generate Random Music</button>
+    </form>
+    <div id="result"></div>
+
+    <script>
+        const options = {
+            'Time Signature': {
+                'nonCompound': ['2/4', '3/4', '4/4', '5/4', '6/4', '4/2'],
+                'compound': ['3/8', '6/8', '9/8', '12/8']
+            },
+            'Key': ['A', 'B', 'C', 'D', 'E', 'F', 'G'],
+            'Major/Minor': ['Major', 'Minor'],
+            'Instruments': [
+                'Piano', 'Guitar', 'Violin', 'Drums', 'Flute', 'Saxophone', 'Trumpet', 
+                'Cello', 'Clarinet', 'Trombone', 'Banjo', 'Mandolin', 'Harp', 'Bass Guitar',
+                'Accordion', 'French Horn', 'Oboe', 'Recorder', 'Viola', 'Double Bass',
+                'Synthesizer', 'Xylophone', 'Marimba', 'Bagpipes', 'Timpani', 'Congas', 
+                'Bongo Drums', 'Electric Guitar', 'Keytar', 'Triangle', 'Cello', 'Sitar' 
+            ],
+            'Number of instruments': ['1', '2',],
+            'Style': ['Baroque', 'Classical', 'Romantic', 'Modernism'],
+            'Tempo Marking': [
+                'Largo', 'Lento', 'Adagio', 'Andante', 'Moderato', 'Allegro', 'Vivace', 
+                'Allegro Vivace'
+            ]
+        };
+
+        // Function to get a random item from an array
+        function getRandomItem(array) {
+            const randomIndex = Math.floor(Math.random() * array.length);
+            return array[randomIndex];
+        }
+
+        // Function to get a random number of instruments
+        function getRandomInstruments(numInstruments) {
+            let selectedInstruments = [];
+            const availableInstruments = [...options['Instruments']];
+
+            // Select random instruments
+            for (let i = 0; i < numInstruments; i++) {
+                const randomInstrumentIndex = Math.floor(Math.random() * availableInstruments.length);
+                selectedInstruments.push(availableInstruments[randomInstrumentIndex]);
+                availableInstruments.splice(randomInstrumentIndex, 1); // Remove the selected instrument to avoid repetition
+            }
+
+            return selectedInstruments;
+        }
+
+        // Function to generate and display the random options
+        function generateRandom() {
+            // Get the checkbox value to determine if compound time signature is selected
+            const isCompound = document.getElementById('compoundCheckbox').checked;
+            
+            // Select random options for each category
+            const timeSignature = isCompound 
+                ? getRandomItem(options['Time Signature'].compound) 
+                : getRandomItem(options['Time Signature'].nonCompound);
+
+            const key = getRandomItem(options['Key']);
+            const majorMinor = getRandomItem(options['Major/Minor']);
+            
+            const numInstruments = parseInt(getRandomItem(options['Number of instruments']));
+            const instruments = getRandomInstruments(numInstruments);
+            
+            const style = getRandomItem(options['Style']);
+            const tempo = getRandomItem(options['Tempo Marking']);
+
+            // Display the result
+            const result = `
+                <h2>Generated Random Music</h2>
+                <p><strong>Time Signature:</strong> ${timeSignature}</p>
+                <p><strong>Key:</strong> ${key}</p>
+                <p><strong>Major/Minor:</strong> ${majorMinor}</p>
+                <p><strong>Instruments:</strong> ${instruments.join(', ')}</p>
+                <p><strong>Number of Instruments:</strong> ${numInstruments}</p>
+                <p><strong>Style:</strong> ${style}</p>
+                <p><strong>Tempo Marking:</strong> ${tempo}</p>
+            `;
+            document.getElementById('result').innerHTML = result;
+        }
+    </script>
+</body>
+</html>
